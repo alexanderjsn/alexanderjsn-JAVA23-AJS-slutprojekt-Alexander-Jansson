@@ -1,25 +1,22 @@
 .btnClass {
-    background-color: #1f116d;
     color: white;
     padding: 20px 40px;
     text-align: center;
     font-size: 20px;
     margin: 50px;
-    border-radius: 50%;
-    width: 200px;
-    height: 200px;
-
 }
 
-.UX{
+
+
+.btnClass.UX{
     background-color: red;
 
 }
-.Front-End{
+.btnClass.Front-End{
     background-color: green;
 }
 
-.Back-End{
+.btnClass.Back-End{
     background-color: yellow;
 }
 
