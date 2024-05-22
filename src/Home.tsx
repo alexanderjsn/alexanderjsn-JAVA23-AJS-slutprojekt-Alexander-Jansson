@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './Home.css';
 import React, { useState } from 'react';
+import TaskForm from './TaskForm';
 
 function Home() {
 
@@ -23,6 +24,9 @@ function Home() {
         <div>
             <div className="btnDiv">{makeBtn()}</div>
             <div className="taskDiv">TASKS HERE</div>
+            <div className="addTaskDiv">
+                <TaskForm />
+            </div>
         </div>
     );
 }
