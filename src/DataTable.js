@@ -23,24 +23,56 @@ const DataTable = () => {
 
 return (
     <div className ="DataTableDiv">
-    <div className="DataDiv">
+    {tasks.filter(tasks => tasks.status === "To Do").map((tasks, index) => (
+            <div className="DataDiv">
+            <div>
+            <div className="DataHeader"><h1>{tasks.status}</h1></div>
+            <div key={index} className="Task">
+            <li>{tasks.description}</li>
+            <li>{tasks.assigned}</li>
+            <button className="AddBtn">{tasks.dept}</button>
+            <button className="AddBtn">Assign</button>
+            </div>
+            </div>
+            <button className="AddBtn"> Add</button>
+            </div>
+        ))}
 
-    {tasks.map((tasks, index) => (
-        <div>
-        <div className="DataHeader"><h1>{tasks.status}</h1></div>
-        <div key={index} className="Task">
-        <li>{tasks.description}</li>
-        <li>{tasks.assigned}</li>
-        <button className="AddBtn">{tasks.dept}</button>
-        </div>
-        </div>
-    ))}
+    
 
-    <button className="AddBtn"> Add</button>
-    </div>
-    </div>
-)};
- export default DataTable;
+            {tasks.filter(tasks => tasks.status === "In Progress").map((tasks, index) => (
+            <div className="DataDiv">
+            <div>
+            <div className="DataHeader"><h1>{tasks.status}</h1></div>
+            <div key={index} className="Task">
+            <li>{tasks.description}</li>
+            <li>{tasks.assigned}</li>
+            <button className="AddBtn">{tasks.dept}</button>
+            </div>
+            </div>
+            </div>
+            ))}
+
+            {tasks.filter(tasks => tasks.status === "Completed").map((tasks, index) => (
+                        <div className="DataDiv">
+
+            <div>
+            <div className="DataHeader"><h1>{tasks.status}</h1></div>
+            <div key={index} className="Task">
+            <li>{tasks.description}</li>
+            <li>{tasks.assigned}</li>
+            <li>{new Date(tasks.finished.seconds * 1000).toLocaleString()}</li>
+            <button className="AddBtn">{tasks.dept}</button>
+            </div>
+            </div>
+            </div>
+            ))} 
+
+
+        </div>
+        
+    )};
+    export default DataTable;
 
 ///projects/Weather App/tasks
 
