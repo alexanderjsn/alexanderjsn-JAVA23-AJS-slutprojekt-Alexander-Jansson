@@ -1,7 +1,7 @@
 // hämtar databasen enligt config settings
 import { db } from './firebaseConfig';
 // allt vi vill göra med document
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, addDoc } from 'firebase/firestore';
 
 
     export async function getAllProjects(){
@@ -21,6 +21,11 @@ import { collection, getDocs } from 'firebase/firestore';
             taskArray.push(...tasks);
         }
         return taskArray;
+    }
+
+    export async function addTask(projectId, taskData){
+        const addTask = await addDoc(collection(db, `projects/${projectId}/tasks`), taskData);
+        return addTask;
     }
 
     
