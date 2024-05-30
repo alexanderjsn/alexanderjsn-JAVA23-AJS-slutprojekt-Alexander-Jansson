@@ -1,19 +1,16 @@
-import Header from  './Header';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import DataTable from './DataTable';
+import Header from './Header';
 import Home from './Home';
-import Schedule from './Schedule';
-import Settings from './Settings';
-import GetData from './GetData';
+
 
 function App(){
   return <div>
-    <GetData />
-    <Router>
+   <Router>
             <Header />
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/Schedule" element={<Schedule />} />
-                <Route path="/mypage" element={<Settings />} />
+                <Route path="/datatest" element={<DataTable />} />
             </Routes>
         </Router>  
   </div>
