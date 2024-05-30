@@ -8,8 +8,20 @@ import { collection, getDocs } from 'firebase/firestore';
         // hämtar collection (query för flera docs)
         const querySnapshot = await getDocs(collection(db, 'projects'));
         // skapar en array med alla. Hämtar doc.id , ... = spread som hämtar alla andra values
-        const projects = querySnapshot.docs.map(doc => ({id: doc.id, ...doc.data()}));
-        
-        
+        const projects = querySnapshot.docs.map(doc => ({id: doc.id, ...doc.data()}));        
         return projects;
     }
+
+    export async function getAllTasks(){
+        const projects = await getAllProjects();
+        const taskArray = [];
+        for (const project of  projects ) {
+            const taskQuerySnapshot = await getDocs(collection(db, `projects/${project.id}/tasks`));
+            const tasks = taskQuerySnapshot.docs.map(doc => ({id: doc.id, ...doc.data()}));
+            taskArray.push(...tasks);
+        }
+        return taskArray;
+    }
+
+    
+   // /projects/Weather App/tasks/OlmC3196Amjd6vVPtx2Q
