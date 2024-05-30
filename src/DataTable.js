@@ -6,32 +6,57 @@ const DataTable = () => {
         //hämta data
         const [projects, setProjects] = useState([]);
 
+
         useEffect(() => {
             const getData = async () => {
                 const fromDB = await getAllProjects();
-                setProjects(fromDB);
+                setProjects(fromDB.slice(0,5)); //inc metod?kolla batching
             };
             getData();
         }, []);
             
 return (
     <div class="DataDiv">
-    <div class="DataHeader"><h1>TO DO</h1></div>
-
-        <div class="Task">
-        <li>project description</li>
-        <li>assigned to: </li>
-        <li>field: </li>
-        <button class="AddBtn">Assign</button>
+    <div class="DataHeader">
+        <h1>TO DO</h1></div>
+        <div>
+        {projects.map((project, index) => (
+            <div key={index} class="Task">
+            <li key={index}>{project.id}</li>
+            <li key={index}>{project.assigned}</li>
+            <li key={index}>{project.field}</li>
+            <button class="AddBtn">Assign</button>
+            </div>
+        ))}
         </div>
-        <div class="Task">
-        <button class="AddBtn">Assign</button>
+        <div>
+        {projects.map((project, index) => (
+            <div key={index} class="Task">
+            <li key={index}>{project.id}</li>
+            <li key={index}>{project.assigned}</li>
+            <li key={index}>{project.field}</li>
+            <button class="AddBtn">Mark as Completed</button>
+            <button key={index} class="AddBtn">{project.assign}</button>
+            </div>
+        ))}
         </div>
-        <div class="Task">
-        <button class="AddBtn">Assign</button>
+        <div>
+        {projects.map((project, index) => (
+            <div key={index} class="Task">
+            <li key={index}>{project.id}</li>
+            <li key={index}>{project.assigned}</li>
+            <li key={index}>{project.field}</li>
+            <li key={index}>{project.assign}</li>
+            <li key={index}>{project.finished}</li>
+            </div>
+        ))}
         </div>
     </div>
 )};export default DataTable;
+
+
+
+
 
 /*
 <table>
