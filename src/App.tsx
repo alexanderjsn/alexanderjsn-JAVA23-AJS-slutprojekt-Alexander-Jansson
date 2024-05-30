@@ -3,9 +3,11 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './Home';
 import Schedule from './Schedule';
 import Settings from './Settings';
+import GetData from './GetData';
 
 function App(){
   return <div>
+    <GetData />
     <Router>
             <Header />
             <Routes>
