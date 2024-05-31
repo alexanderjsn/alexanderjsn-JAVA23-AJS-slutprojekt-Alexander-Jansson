@@ -9,7 +9,8 @@ const Assign = ({ projectId }) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        await updateData(projectId, assigned);
+        const status = 'In Progress';
+        await updateData(projectId, assigned, status);
         setAssigned( '' );
         setShowForm(false);
     }

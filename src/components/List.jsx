@@ -8,30 +8,107 @@ import Modal from 'react-modal';
 const List = () => {
     const projects = useData('projects');
     const [showForm, setShowForm] = useState(false);
-
+    const[refresh, setRefresh] = useState(false);
     
     const [projectId, setProjectId] = useState(null);
 
     const AssignClickBtn = (projectId, event) => {
-        setProjectId(projects.id);
         setProjectId (event.target.value);
+        alert(projectId);
         setShowForm(true);
     }
 
 return (
-    <div className ="DataTableDiv">
+
+
+        <div className ="DataTableDiv">
         <Modal
         isOpen={showForm}
         onRequestClose={()=> setShowForm(false)}
         contentLabel="Assign Task">
-        {/*Skickar vidare projektId med värde av knappen(aka projekt id)*/}
+        {/*Skickar vidare projektId med värde av knappen(aka projekt id*/}
         <Assign projectId={projectId} />
         <button className="AddBtn" onClick={()=> AssignClickBtn}>X</button>
         </Modal>
 
+    
+        
+            
+
+        <div>
         <div className="DataDiv">
         <div className="DataHeader"><h1>To Do</h1></div>
-        {projects.filter(projects => projects.status === undefined).map((projects, index) => (
+        {projects.filter(project => !project.status).map((project, index) => (
+        <div key={index} className="Task">
+        <h3>{project.dept}</h3>
+        <li>{project.name}</li>
+        <li>{project.assigned}</li>
+        <button className="AddBtn" value={project.id} onClick =
+        {( event )=> AssignClickBtn(project.id, event)}>Assign</button>
+        </div>
+        ))}
+        </div>
+        </div>
+
+        <div>
+        
+        <div className="DataHeader"><h1>In Progress</h1></div>
+        <div  className="DataDiv">
+        {projects.filter(project => project.status === 'In Progress').map((project, index) => (
+        <div key={index} className="Task">
+        <h3>{project.dept}</h3>
+        <li>{project.name}</li>
+        <li>{project.assigned}</li>
+        <button className="AddBtn" value={projects.id} onClick 
+        ={( event )=> AssignClickBtn(projects.id, event)}>Mark as done</button> 
+        </div>
+       
+        ))}
+        </div>
+         </div>
+
+
+        <div>
+        
+        <div className="DataHeader"><h1>Done</h1></div>
+        <div  className="DataDiv">
+        {projects.filter(project => project.status === 'Done').map((project, index) => (
+        <div key={index} className="Task">
+        <h3>{project.dept}</h3>
+        <li>{project.name}</li>
+        <li>{project.assigned}</li>
+        <button className="AddBtn" value={projects.id} onClick 
+        ={( event )=> AssignClickBtn(projects.id, event)}>Remove</button> 
+        </div>
+        ))}
+        </div>
+         </div>
+
+
+       
+        </div>
+    );
+};
+export default List;
+
+
+/*<button className="AddBtkn">{dept}</button>
+                <button className="AddBtn" value={projects.id} onClick ={( event )=> AssignClickBtn(projects.id, event)}>Assign</button> * */
+
+
+/*       <div className="DataHeader"><h1>{projects.dept}</h1></div>
+        {projects.dept.map((dept, index) => {
+        <div key={index} className="Task">
+        <li>{projects.name}</li>
+        <li>{projects.assigned}</li>
+        </div>
+        })}
+ */
+
+
+/*
+
+{projects.filter(projects => projects.status === undefined).map((projects, index) => (
         <div key={index} className="Task">
         <li>{projects.name}</li>
         <li>{projects.assigned}</li>
@@ -39,10 +116,9 @@ return (
         <button className="AddBtn" value={projects.id} onClick ={( event )=> AssignClickBtn(projects.id, event)}>Assign</button>  
         </div>
         ))};
-        </div>
-        </div>
-)};
-export default List;
+
+
+*/ 
 
 
     /*

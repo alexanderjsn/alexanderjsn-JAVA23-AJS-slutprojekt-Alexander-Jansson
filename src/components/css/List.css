@@ -8,8 +8,9 @@
     background-color: white;
     color: white;
     box-shadow: -5px 0px 4px 0 rgba(0,0,0,0.1);
-    width: 25%;
     margin: 0 10px;
+    border-radius: 10px 10px 0 0;
+    height: 100%;
 }
 
 
