@@ -2,19 +2,20 @@ import './css/List.css';
 import useData from '../hooks/useData';
 import React, { useState } from 'react';
 import Assign  from './Assign';
-
 import Modal from 'react-modal';
 
 const List = () => {
     const projects = useData('projects');
+
+    
     const [showForm, setShowForm] = useState(false);
-    const[refresh, setRefresh] = useState(false);
     
     const [projectId, setProjectId] = useState(null);
 
+
+
     const AssignClickBtn = (projectId, event) => {
         setProjectId (event.target.value);
-        alert(projectId);
         setShowForm(true);
     }
 
