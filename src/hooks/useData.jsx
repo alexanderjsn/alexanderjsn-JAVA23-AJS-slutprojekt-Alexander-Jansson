@@ -1,7 +1,6 @@
 // hämtar databasen enligt config settings
 import { useState, useEffect, useContext } from 'react';
 import { firebase,db } from '../firebaseConfig.js';
-// allt vi vill göra med document
 import { collection, onSnapshot , } from 'firebase/firestore';
 
 const useData = (collectionName) => {

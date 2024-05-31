@@ -3,16 +3,24 @@ import useData from '../hooks/useData';
 import React, { useState } from 'react';
 import Assign  from './Assign';
 import Modal from 'react-modal';
+import removeData from '../hooks/removeData';
+import completeTask from '../hooks/completeTask';
 
 const List = () => {
     const projects = useData('projects');
 
-    
+
     const [showForm, setShowForm] = useState(false);
     
     const [projectId, setProjectId] = useState(null);
 
-
+    const doneBtn = async   (projectId) => {
+        const done = 'Done';
+        await completeTask('projects', done);
+    } 
+    const deleteBtn = async   (projectId) => {
+        await removeData('projects', projectId);
+    } 
 
     const AssignClickBtn = (projectId, event) => {
         setProjectId (event.target.value);
@@ -61,7 +69,7 @@ return (
         <li>{project.name}</li>
         <li>{project.assigned}</li>
         <button className="AddBtn" value={projects.id} onClick 
-        ={( event )=> AssignClickBtn(projects.id, event)}>Mark as done</button> 
+        ={doneBtn}>Mark as done</button> 
         </div>
        
         ))}
@@ -78,8 +86,7 @@ return (
         <h3>{project.dept}</h3>
         <li>{project.name}</li>
         <li>{project.assigned}</li>
-        <button className="AddBtn" value={projects.id} onClick 
-        ={( event )=> AssignClickBtn(projects.id, event)}>Remove</button> 
+        <button className="AddBtn" value={project.id} onClick={() => deleteBtn(project.id)} >Remove</button> 
         </div>
         ))}
         </div>
