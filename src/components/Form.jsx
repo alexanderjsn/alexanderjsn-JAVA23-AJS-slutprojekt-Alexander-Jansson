@@ -1,12 +1,9 @@
-import useData from './hooks/useData';
-import addData from './hooks/addData';
-
-import './DataTable.css';
+import addData from '../hooks/addData';
+import './css/List.css';
 import React, { useState } from 'react';
 const Form = () => {
-    const [formData, setFormData] = useState({ name: '' 
-        , assigned: '', dept: ''});
-
+    
+    const [formData, setFormData] = useState({ name: '', assigned: '', dept: '' });
     const handleSubmit = async (event) => {
     event.preventDefault();
     await addData(formData, 'projects');
@@ -29,14 +26,14 @@ return (
     </label>
 
     <label>
-     Assign:
-     <input type="text" name="assigned" value={formData.assigned} onChange={handleChange}></input>
+     Department:
+     <select type="dept" name="dept" value={formData.dept} onChange={handleChange}>
+     <option value="UX">UX</option>
+    <option value="Frontend">Frontend</option>
+    <option value="Backend">Backend</option>
+    </select>
     </label>
 
-    <label>
-     Department:
-     <input type="text" name="dept" value={formData.dept} onChange={handleChange}></input>
-    </label>
     <input type="submit" value="Submit"/>
     </form>
 )

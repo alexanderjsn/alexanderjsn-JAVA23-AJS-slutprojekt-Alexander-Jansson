@@ -1,15 +1,18 @@
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import DataTable from './DataTable';
-import Header from './Header';
-import Home from './Home';
-import Form from './Form';
+import List from './components/List';
+import Header from './components/Header';
+import Form from './components/Form';
+
 
 function App(){
-  return <div>
-          <DataTable />
+  return (
+          <div>
+          <Header />
+          <List />
           <Form />
-
-  </div>
+          </div>
+  );
 }
+
 
 export default App;

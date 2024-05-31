@@ -1,12 +1,11 @@
 // hämtar databasen enligt config settings
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { db } from '../firebaseConfig.js';
 // allt vi vill göra med document
-import { collection, getDocs, addDoc } from 'firebase/firestore';
+import { collection, getDocs, } from 'firebase/firestore';
 
 const useData = (collectionName) => {
     const [projects, setProjects] = useState([]);
-
     useEffect(() => {
     const fetchData = async () => { 
     try{
@@ -23,17 +22,6 @@ const useData = (collectionName) => {
 }, [collectionName]);
 return projects;
 };
-
-
-const addData = async (data, collectionName) => {
-    try{
-        const docRef = await addDoc(collection(db, collectionName), data);
-        return docRef.id;
-    } catch (error){
-        console.log('Error adding document: ', error);
-    }; 
-};
-
 
 export default useData;
 
