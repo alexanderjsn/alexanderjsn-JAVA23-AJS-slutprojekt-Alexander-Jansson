@@ -26,6 +26,7 @@ const List = () => {
         setProjectId (event.target.value);
         setShowForm(true);
     }
+  
 
 return (
 
@@ -37,7 +38,7 @@ return (
         contentLabel="Assign Task">
         {/*Skickar vidare projektId med värde av knappen(aka projekt id*/}
         <Assign projectId={projectId} />
-        <button className="AddBtn" onClick={()=> AssignClickBtn}>X</button>
+        <button className="AddBtn" onClick={()=> setShowForm(false)}>Close</button>
         </Modal>
 
     
@@ -74,7 +75,7 @@ return (
        
         ))}
         </div>
-         </div>
+        </div>
 
 
         <div>
@@ -91,9 +92,6 @@ return (
         ))}
         </div>
          </div>
-
-
-       
         </div>
     );
 };
