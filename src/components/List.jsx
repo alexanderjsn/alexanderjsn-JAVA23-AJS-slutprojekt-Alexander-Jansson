@@ -14,9 +14,9 @@ const List = () => {
     
     const [projectId, setProjectId] = useState(null);
 
-    const doneBtn = async   (projectId) => {
+    const doneBtn = async   (event) => {
         const done = 'Done';
-        await completeTask('projects', done);
+        await completeTask(event.target.value, done);
     } 
     const deleteBtn = async   (projectId) => {
         await removeData('projects', projectId);
@@ -68,7 +68,7 @@ return (
         <h3>{project.dept}</h3>
         <li>{project.name}</li>
         <li>{project.assigned}</li>
-        <button className="AddBtn" value={projects.id} onClick 
+        <button className="AddBtn" value={project.id} onClick 
         ={doneBtn}>Mark as done</button> 
         </div>
        
